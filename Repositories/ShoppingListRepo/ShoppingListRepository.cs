@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShopingList.Repositories
+namespace MyShopingList.Repositories.ShoppingListRepo
 {
-    internal class ShoppingListRepository
+    public class ShoppingListRepository
     {
     }
 }

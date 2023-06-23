@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShopingList.Repositories.Interfaces
+namespace MyShopingList.Repositories.ShoppingListRepo
 {
     public interface IShoppingListRepository
     {

@@ -5,13 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShopingList.Repositories.Interfaces
+namespace MyShopingList.Repositories.ProductListRepo
 {
     public interface IProductRepository
     {
-        void addProduct(Product product);
-        void updateProduct(Product product);
-        void deleteProduct(int productId);
+        void AddProduct(Product product);
+        void UpdateProduct(Product product);
+        void DeleteProduct(int productId);
         List<Product> GetAllProducts();
         Product GetProductById(int productId);
     }

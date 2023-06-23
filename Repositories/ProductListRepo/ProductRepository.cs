@@ -1,12 +1,11 @@
 ﻿using MyShopingList.Models;
-using MyShopingList.Repositories.Interfaces.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyShopingList.Repositories
+namespace MyShopingList.Repositories.ProductListRepo
 {
     public class ProductRepository : IProductRepository
     {
