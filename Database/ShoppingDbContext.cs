@@ -21,11 +21,7 @@ namespace MyShopingList.Database
 
         private static string GetConnectionString()
         {
-            SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder();
-            builder.DataSource = "DESKTOP-B8S1CNR";
-            builder.InitialCatalog = "ShopingDb";
-
-            return builder.ToString();
+            return "Data Source=DESKTOP-B8S1CNR;Initial Catalog=ShopingDb;Integrated Security=True";
         }
     }
 }
