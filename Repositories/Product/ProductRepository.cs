@@ -1,5 +1,5 @@
 ﻿using MyShopingList.Models;
-using MyShopingList.Repositories.Interfaces;
+using MyShopingList.Repositories.Interfaces.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
