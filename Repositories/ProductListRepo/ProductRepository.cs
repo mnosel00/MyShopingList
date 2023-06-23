@@ -9,12 +9,12 @@ namespace MyShopingList.Repositories.ProductListRepo
 {
     public class ProductRepository : IProductRepository
     {
-        public void addProduct(Product product)
+        public void AddProduct(Product product)
         {
             throw new NotImplementedException();
         }
 
-        public void deleteProduct(int productId)
+        public void DeleteProduct(int productId)
         {
             throw new NotImplementedException();
         }
@@ -29,7 +29,7 @@ namespace MyShopingList.Repositories.ProductListRepo
             throw new NotImplementedException();
         }
 
-        public void updateProduct(Product product)
+        public void UpdateProduct(Product product)
         {
             throw new NotImplementedException();
         }
