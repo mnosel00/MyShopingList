@@ -28,12 +28,15 @@ namespace MyShopingList
 
         public CreateShopingList()
         {
+            InitializeComponent();
+            btnAddList.IsEnabled = false;
             _productRepository = new ProductRepository(new Database.ShoppingDbContext());
             _shoppingListRepository = new ShoppingListRepository(new Database.ShoppingDbContext());
         }
 
         private void AddProductToList(object sender, RoutedEventArgs e)
         {
+            btnAddList.IsEnabled = true;
             string name = txtName.Text;
             string category = txtCategory.Text;
             decimal quantity = decimal.Parse(txtQuantity.Text);
@@ -69,6 +72,7 @@ namespace MyShopingList
         private void CreateNewList(object sender, RoutedEventArgs e)
         {
             List<Product> products = _productRepository.GetAllProducts();
+           
             string newListName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name for the new Shopping List:", "New Shopping List");
             ShoppingList newShoppingList = new ShoppingList(newListName);
             newShoppingList.Products = products;
