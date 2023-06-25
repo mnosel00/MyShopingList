@@ -24,6 +24,8 @@ namespace MyShopingList
     {
         private readonly ProductRepository _productRepository;
         private readonly ShoppingListRepository _shoppingListRepository;
+        List<Product> _products = new List<Product>();
+
         public CreateShopingList()
         {
             _productRepository = new ProductRepository(new Database.ShoppingDbContext());
@@ -44,7 +46,7 @@ namespace MyShopingList
             }
             Product newProduct = new Product(name, category, quantity, unit);
 
-            _productRepository.AddProduct(newProduct);
+            _products.Add(newProduct);
 
             // Wyczyść TextBoxy po dodaniu produktu
             
@@ -57,20 +59,22 @@ namespace MyShopingList
             // Zaktualizuj ListBox z listą ostatnio dodanych produktów
             // lstRecentProducts.ItemsSource = _productRepository.GetAllProducts();
 
-            List<Product> products = _productRepository.GetAllProducts();
-            lstRecentProducts.ItemsSource = products;
+            lstRecentProducts.ItemsSource = null;
+            lstRecentProducts.ItemsSource = _products;
+            
 
 
         }
 
         private void CreateNewList(object sender, RoutedEventArgs e)
         {
+            List<Product> products = _productRepository.GetAllProducts();
             string newListName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name for the new Shopping List:", "New Shopping List");
             ShoppingList newShoppingList = new ShoppingList(newListName);
-            lstRecentProducts.Items.Add(newShoppingList);
+            newShoppingList.Products = products;
             _shoppingListRepository.AddShoppingList(newShoppingList);
 
-
+            
 
         }
     }

@@ -19,7 +19,7 @@ namespace MyShopingList.Repositories.ShoppingListRepo
         }
 
         public void AddShoppingList(ShoppingList shoppingList)
-        {
+         {
             _context.ShoppingLists.Add(shoppingList);
             _context.SaveChanges();
         }
