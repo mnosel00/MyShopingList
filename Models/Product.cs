@@ -15,16 +15,21 @@ namespace MyShopingList.Models
         public string Category { get; set; }
         public decimal Quantity { get; set; }
         public string Unit { get ; set; }
-        public decimal Price { get; set; }
+
+        public Product()
+        {
+            
+        }
+        public string DisplayText => $"{Name} - {Quantity} {Unit}";
 
 
-        public Product(string name, string category, decimal quantity, string unit, decimal price)
+        public Product(string name, string category, decimal quantity, string unit)
         {
             Name = name;
             Category = category;
             Quantity = quantity;
             Unit = unit;
-            Price = price;
+            
         }
     }
 }
