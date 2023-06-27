@@ -71,13 +71,17 @@ namespace MyShopingList
 
         private void CreateNewList(object sender, RoutedEventArgs e)
         {
-            List<Product> products = _productRepository.GetAllProducts();
+            List<Product> products = _products;
            
             string newListName = Microsoft.VisualBasic.Interaction.InputBox("Enter the name for the new Shopping List:", "New Shopping List");
             ShoppingList newShoppingList = new ShoppingList(newListName);
             newShoppingList.Products = products;
             _shoppingListRepository.AddShoppingList(newShoppingList);
+           
 
+            _products.Clear();
+            lstRecentProducts.ItemsSource = null;
+            btnAddList.IsEnabled = false;
             
 
         }

@@ -12,6 +12,7 @@ namespace MyShopingList.Models
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool IsObsolate { get; set; }
         public List<Product> Products { get; set; }
 
         public ShoppingList()
