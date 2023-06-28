@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitCreate : DbMigration
+    public partial class init : DbMigration
     {
         public override void Up()
         {
@@ -16,12 +16,12 @@
                         Category = c.String(),
                         Quantity = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Unit = c.String(),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        ShoppingList_Id = c.Int(),
+                        ShoppingList_Id = c.Int(nullable: false),
+                        ShoppingList_Id1 = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.ShoppingLists", t => t.ShoppingList_Id)
-                .Index(t => t.ShoppingList_Id);
+                .ForeignKey("dbo.ShoppingLists", t => t.ShoppingList_Id1)
+                .Index(t => t.ShoppingList_Id1);
             
             CreateTable(
                 "dbo.ShoppingLists",
@@ -29,6 +29,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        IsObsolate = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -36,8 +37,8 @@
         
         public override void Down()
         {
-            DropForeignKey("dbo.Products", "ShoppingList_Id", "dbo.ShoppingLists");
-            DropIndex("dbo.Products", new[] { "ShoppingList_Id" });
+            DropForeignKey("dbo.Products", "ShoppingList_Id1", "dbo.ShoppingLists");
+            DropIndex("dbo.Products", new[] { "ShoppingList_Id1" });
             DropTable("dbo.ShoppingLists");
             DropTable("dbo.Products");
         }

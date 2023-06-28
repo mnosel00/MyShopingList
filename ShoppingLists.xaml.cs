@@ -1,4 +1,5 @@
-﻿using MyShopingList.Models;
+﻿using MyShopingList.Database;
+using MyShopingList.Models;
 using MyShopingList.Repositories.ProductListRepo;
 using MyShopingList.Repositories.ShoppingListRepo;
 using System;
@@ -25,13 +26,18 @@ namespace MyShopingList
         private readonly ShoppingListRepository _shoppingListRepository;
         private readonly ProductRepository _productRepository;
         List<ShoppingList> _shoppingLists = new List<ShoppingList>();
+        List<Product> _products = new List<Product>();
+        List<Product> _reletedItems = new List<Product>();
+        private readonly ShoppingDbContext _dbContext;
         public ShoppingLists()
         {
             InitializeComponent();
             _productRepository = new ProductRepository(new Database.ShoppingDbContext());
             _shoppingListRepository = new ShoppingListRepository(new Database.ShoppingDbContext());
+            _dbContext = new ShoppingDbContext();
 
             _shoppingLists = _shoppingListRepository.GetAllShoppingLists();
+            _products = _productRepository.GetAllProducts(); 
 
             listOfShoppingLists.ItemsSource = _shoppingLists;
 
@@ -43,15 +49,41 @@ namespace MyShopingList
                 if(obsoleteCheckBox.IsChecked==true)
                 {
                     selectedList.IsObsolate = true;
+                }  
+                else if(HasReletedItems(selectedList.Id))
+                {
+                    DeleteProductFromShoppingList();
+                    DeleteShopingList(selectedList);
                 }
                 else
                 {
-                    _shoppingListRepository.DeleteShoppingList(selectedList.Id);
-                    _shoppingLists.Remove(selectedList);
-                    listOfShoppingLists.ItemsSource = null;
-                    listOfShoppingLists.ItemsSource = _shoppingLists;
+                    DeleteShopingList(selectedList);
                 }
             }
         }
+
+        public bool HasReletedItems ( int shoppingListId)
+        {
+            _reletedItems = _dbContext.Products.Where(p=>p.ShoppingListId == shoppingListId).ToList();
+            return _reletedItems.Count > 0;
+        }
+
+        public void DeleteProductFromShoppingList()
+        {
+            foreach (var item in _reletedItems)
+            {
+                _productRepository.DeleteProduct(item.Id);
+            }
+        }
+
+        public void DeleteShopingList( ShoppingList selectedList)
+        {
+            _shoppingListRepository.DeleteShoppingList(selectedList.Id);
+            _shoppingLists.Remove(selectedList);
+            listOfShoppingLists.ItemsSource = null;
+            listOfShoppingLists.ItemsSource = _shoppingLists;
+        }
+       
+        
     }
 }

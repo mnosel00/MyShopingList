@@ -7,13 +7,13 @@ namespace MyShopingList.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ProductModelChange : IMigrationMetadata
+    public sealed partial class foreignKeyFixed : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ProductModelChange));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(foreignKeyFixed));
         
         string IMigrationMetadata.Id
         {
-            get { return "202306251535433_ProductModelChange"; }
+            get { return "202306282207513_foreignKeyFixed"; }
         }
         
         string IMigrationMetadata.Source
