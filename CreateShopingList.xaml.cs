@@ -51,16 +51,12 @@ namespace MyShopingList
 
             _products.Add(newProduct);
 
-            // Wyczyść TextBoxy po dodaniu produktu
             
             txtName.Text = "";
             txtCategory.Text = "";
             txtQuantity.Text = "";
             txtUnit.Text = "";
 
-
-            // Zaktualizuj ListBox z listą ostatnio dodanych produktów
-            // lstRecentProducts.ItemsSource = _productRepository.GetAllProducts();
 
             lstRecentProducts.ItemsSource = null;
             lstRecentProducts.ItemsSource = _products;
@@ -82,7 +78,16 @@ namespace MyShopingList
             _products.Clear();
             lstRecentProducts.ItemsSource = null;
             btnAddList.IsEnabled = false;
-            
+            RefreshShoppingList();
+            this.Close();
+
+
+        }
+
+        private void RefreshShoppingList()
+        {
+            ShoppingLists shoppingLists = new ShoppingLists();
+            shoppingLists.Show();
 
         }
     }

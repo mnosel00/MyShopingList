@@ -9,6 +9,7 @@
     <Grid >
         <ListBox x:Name="listOfShoppingLists" DisplayMemberPath="Name" />
         <Button Content="Remove" Click="RemoveButton_Click" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+        <Button Content="Create new List" Click="GoToNewListButton_Click" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
         <CheckBox x:Name="obsoleteCheckBox" Content="Mark as Obsolete" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

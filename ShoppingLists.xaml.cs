@@ -62,6 +62,13 @@ namespace MyShopingList
             }
         }
 
+        private void GoToNewListButton_Click (object sender, RoutedEventArgs e)
+        {
+            CreateShopingList createShopingList = new CreateShopingList();
+            createShopingList.Show();
+            this.Close();
+        }
+
         public bool HasReletedItems ( int shoppingListId)
         {
             _reletedItems = _dbContext.Products.Where(p=>p.ShoppingListId == shoppingListId).ToList();
