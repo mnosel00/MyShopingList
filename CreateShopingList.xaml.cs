@@ -81,7 +81,6 @@ namespace MyShopingList
             RefreshShoppingList();
             this.Close();
 
-
         }
 
         private void RefreshShoppingList()
