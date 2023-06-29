@@ -62,6 +62,30 @@ namespace MyShopingList
             }
         }
 
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if(listOfShoppingLists.SelectedItem != null) { }
+            //Pobrana lista
+            ShoppingList shoppingList = (ShoppingList)listOfShoppingLists.SelectedItem;
+
+            //Znajdz Produkty gdzie foreignKey produkty jest równy id listy 
+            try
+            {
+                List<Product> products = _dbContext.Products.Where(p => p.ShoppingListId == shoppingList.Id).ToList();
+                detailsTextBox.Text = shoppingList.Name;
+                otherListBox.ItemsSource = products;
+            }
+            catch (Exception)
+            {
+
+                
+            }
+            
+
+            
+            
+        }
+
         private void GoToNewListButton_Click (object sender, RoutedEventArgs e)
         {
             CreateShopingList createShopingList = new CreateShopingList();
@@ -89,6 +113,8 @@ namespace MyShopingList
             _shoppingLists.Remove(selectedList);
             listOfShoppingLists.ItemsSource = null;
             listOfShoppingLists.ItemsSource = _shoppingLists;
+            detailsTextBox.Text = null;
+            otherListBox.ItemsSource = null;
         }
        
         

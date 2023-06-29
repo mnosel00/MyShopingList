@@ -6,10 +6,62 @@
         xmlns:local="clr-namespace:MyShopingList"
         mc:Ignorable="d"
         Title="ShoppingLists" Height="450" Width="800">
-    <Grid >
-        <ListBox x:Name="listOfShoppingLists" DisplayMemberPath="Name" />
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <ListBox x:Name="listOfShoppingLists" DisplayMemberPath="Name" SelectionChanged="ListBox_SelectionChanged"/>
+
+        <Grid Grid.Column="2" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Selected Item Details" FontWeight="Bold" Margin="0,0,0,5"/>
+
+            <TextBox x:Name="detailsTextBox" Grid.Row="1" TextWrapping="Wrap" IsReadOnly="True" Margin="0,0,0,-42"/>
+            <ListBox x:Name="otherListBox" Grid.Row="1" Margin="10,29,10,-9">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                            <TextBlock Text="{Binding Category}" />
+                            <TextBlock Text="{Binding Quantity}" />
+                            <TextBlock Text="{Binding Unit}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Grid>
+                                        <Border>
+                                            <ContentPresenter />
+                                        </Border>
+                                        <Separator HorizontalAlignment="Stretch" VerticalAlignment="Bottom" />
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+
+
+
+
+        </Grid>
+
         <Button Content="Remove" Click="RemoveButton_Click" Margin="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
         <Button Content="Create new List" Click="GoToNewListButton_Click" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Bottom" />
         <CheckBox x:Name="obsoleteCheckBox" Content="Mark as Obsolete" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
+
+
     </Grid>
 </Window>
